@@ -1,3 +1,6 @@
+using Printf
+using LinearAlgebra
+
 array = Any[100, 25, "ABC"]
 
 println(array)
@@ -12,16 +15,42 @@ println(array[1])
 # println(array[0])
 # => Error
 
-arr2 = Array{Int64}(5)
+arr2 = Array{Int64}(undef, 1)
 println(arr2)
 
-arr3 = Array{Float64}(0)
-
+arr3 = Array{Float64}(undef, 1)
+push!(arr3, 1)
+@printf("%d\n", 1e5)
+str = @sprintf("%05d\n", 3)
+show(str)
 println(arr3)
-push!(arr3, 1.0)
-push!(arr3, 2.0)
-push!(arr3, 3.0)
-pop!(arr3)
+start_time = time()
+time_elapsed = time() - start_time
+println("time elapsed: $time_elapsed")
+
+arr3 = Float64[]
+push!(arr3, 1)
+println(arr3)
+
+println(length(arr3))
+println(ndims(arr3))
+
+arr4 = collect(1:7)
+show(arr4)
+
+sizehint!(arr4, 10)
+
+
+for i in 1:2:9
+    println(i)
+end
+
+a = split("A,B,C,D", ",")
+typeof(a)
+show(a)
+println(a[1])
+
+
 # A function whose name ends in a ! changes its first argument.
 
 println(arr3)
@@ -44,9 +73,24 @@ println(arr4[1][4:end])
 
 println(zeros(10))
 println(ones(10))
-println(linspace(10, 100, 100))
 
-tensor = Array{Int64}(3, 3, 3)
+da = [1, 2, 3, 4, 5]
+for i in 1:length(da)
+    da[i] *= 2
+end
+println(da)
+
+b = join(da, ", ")
+println(b)
+
+b = range(0, step=10, length=5)
+println(b)
+arr = Array{Any}(undef, 4)
+fill!(arr, 4)
+println(arr)
+println(append!(arr, b))
+
+tensor = Array{Int64}(3)
 
 println(fill!(tensor, 1))
 

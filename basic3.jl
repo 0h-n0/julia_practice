@@ -240,3 +240,5 @@ println(f(1.0, 1::Integer))
 
 # @time fib(35)
 # @elapsed fib(35)
+
+const a = 1
